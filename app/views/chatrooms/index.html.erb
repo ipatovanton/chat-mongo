@@ -1,0 +1,88 @@
+
+<div class="header">
+  <div class="team-menu"><%= link_to 'TTV Chat', chatrooms_path, class: 'link-color'%></div>
+
+  <div class="channel-menu">
+    <span class="channel-menu_name"><span class="channel-menu_prefix">#</span> List Channel</span>
+  </div>
+</div>
+<div class="main">
+  <div class="listings">
+    <div class="listings_channels">
+      <h2 class="listings_header">Channels</h2>
+      <ul class="channel_list">
+        <% current_user.chatrooms.each do |chatroom| %>
+            <li class="channel"><span><%= link_to "# #{chatroom.name}", chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></span></li>
+
+        <% end %>
+      </ul>
+    </div>
+    <div class="listings_direct-messages">
+      <h2 class="listings_header">Direct Messages</h2>
+      <ul class="channel_list">
+        <li class="channel">
+          <% (User.all - [current_user]).each do |user| %>
+            <ul>
+              <li><span><%= image_tag(user.avatar.url(:thumb))%></span>
+              <%= link_to user.email, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id } %></li>
+            </ul>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="message-history">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @chatrooms.each do |chatroom| %>
+          <tr style="line-height: 50px;">
+            <td id="list-room" style="width: 80%;"><%= chatroom.name %></td>
+
+
+            <!-- <td><%= link_to 'Show', chatroom %></td>
+            <td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td> -->
+            <!-- <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            <td><%= link_to "Join Channel", chatroom_chatroom_users_path(chatroom), class: 'btn btn-success' ,method: :post %></td>
+            <!-- <td><%= link_to "Leave", chatroom_chatroom_users_path(chatroom), method: :delete %></td> -->
+          </tr>
+        <% end %>
+
+      </tbody>
+
+      <div id="myModal" class="chatroom-modal modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          </div>
+        </div>
+      </div>
+    </table>
+    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+       <%= link_to 'New Channel', new_chatroom_path %>
+    </button>
+  </div>
+</div>
+<div class="footer">
+  <div class="user-menu">
+    <span class="user-menu_profile-pic">
+    <% if user_signed_in? %>
+      <div class="round-image-50">
+        <%= image_tag(current_user.avatar.url(:original)) %>
+      </div>
+      <% end %>
+    </span>
+    <span class="user-menu_username"><%= link_to("#{current_user.email}", edit_profile_path, class: 'link-color' )%></span>
+    <span class="connection_status">online</span>
+    <span class="logout"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></span>
+  </div>
+</div>
+
+
+
+
+

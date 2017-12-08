@@ -1,0 +1,15 @@
+<%= form_for(@chatroom) do |f| %>
+  <div class="modal-header"></div>
+  <a href= <%= chatrooms_path %> class="button close" data-dismiss="modal" type="button" >x</a>
+  <h4 id="new-group-title" class="modal-title">New Channel</h4>
+  <div class="modal-body">
+
+      <div class="form-group">
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Enter name Channels'%>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <a href= <%= chatrooms_path %> class="btn btn-default" data-dismiss="modal" type="button">Close</a>
+    <%= f.button :submit, value: "Save", class: 'btn btn-primary btn-share-file' %>
+  </div>
+<% end %>

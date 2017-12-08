@@ -1,0 +1,38 @@
+<div id="notice"><%= notice %></div>
+<div class="row-sign">
+  <div class="col-sm-4 col-sm-offset-4">
+    <div class="span_4_of_6 col float_none margin_auto no_right_padding">
+      <p class="alert_info"><i class="ts_icon ts_icon_info_circle"></i> You need to sign in to see this page.</p>
+    </div>
+    <%= render "devise/shared/errors",flash: flash %>
+    <div class="card">
+        <h1 id="signin_header" class="tiny_bottom_margin">
+          Sign in to <span class="break_word">Chat</span>
+        </h1>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, placeholder: 'Email Address', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="form-group">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+
+          <div class="form-group">
+              <%= f.submit "Log in", class: "btn btn-success btn-block btn-lg" %>
+          </div>
+        <% end %>
+        <div class="text-center">
+          <%= render "devise/shared/links" %>
+        </div>
+    </div>
+  </div>
+</div>
+

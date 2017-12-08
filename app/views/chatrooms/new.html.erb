@@ -1,0 +1,46 @@
+<div class="header">
+  <div class="team-menu"><%= link_to 'TTV Chat', chatrooms_path, class: 'link-color'%></div>
+
+  <div class="channel-menu">
+    <span class="channel-menu_name"><span class="channel-menu_prefix">#</span> New Channel</span>
+  </div>
+</div>
+<div class="main">
+  <div class="listings">
+    <div class="listings_channels">
+      <h2 class="listings_header">Channels</h2>
+      <ul class="channel_list">
+        <% current_user.chatrooms.public_channels.each do |chatroom| %>
+            <li class="channel"><span><%= link_to "# #{chatroom.name}", chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></span></li>
+
+        <% end %>
+      </ul>
+    </div>
+    <div class="listings_direct-messages">
+      <h2 class="listings_header">Direct Messages</h2>
+    </div>
+  </div>
+  <div class="message-history" id="messages">
+  <%= render partial: 'form', locals: { title: 'New Channel' } %>
+  </div>
+</div>
+<div class="footer">
+  <div class="user-menu">
+    <span class="user-menu_profile-pic">
+    <% if user_signed_in? %>
+      <div class="round-image-50">
+
+      </div>
+      <% end %>
+    </span>
+    <span class="user-menu_username"><%= link_to("#{current_user.email}", edit_profile_path, class: 'link-color' )%></span>
+    <span class="connection_status">online</span>
+    <span class="logout"><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></span>
+  </div>
+
+</div>
+
+
+
+
+
