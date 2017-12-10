@@ -11,6 +11,7 @@ $ ->
 
     done: (event, data) ->
       result = data.result
+      console.log(result)
       attachment_url = result.attachment_url
       console.log(attachment_url)
       chatroom_id = $("[data-behavior='messages']").data("chatroom-id")

@@ -11,7 +11,7 @@
     <div class="listings_channels">
       <h2 class="listings_header">Channels</h2>
       <ul class="channel_list">
-        <% current_user.chatrooms.each do |chatroom| %>
+        <% current_user.chatrooms.public_channels.each do |chatroom| %>
             <li class="channel"><span><%= link_to "# #{chatroom.name}", chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></span></li>
 
         <% end %>
@@ -50,6 +50,13 @@
             <!-- <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
             <td><%= link_to "Join Channel", chatroom_chatroom_users_path(chatroom), class: 'btn btn-success' ,method: :post %></td>
             <!-- <td><%= link_to "Leave", chatroom_chatroom_users_path(chatroom), method: :delete %></td> -->
+          </tr>
+        <% end %>
+
+        <% @direct_messages.each do |direct_message| %>
+          <tr style="line-height: 50px;">
+            <td id="list-room" style="width: 80%;"><%= direct_message.name %></td>
+            <td><%= link_to "Join Channel", chatroom_chatroom_users_path(direct_message), class: 'btn btn-success' ,method: :post %></td>
           </tr>
         <% end %>
 

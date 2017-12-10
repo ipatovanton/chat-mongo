@@ -4,7 +4,8 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms
   # GET /chatrooms.json
   def index
-    @chatrooms = Chatroom.all
+    @chatrooms = Chatroom.public_channels
+    @direct_messages = Chatroom.where(direct_message: true)
   end
 
   # GET /chatrooms/1

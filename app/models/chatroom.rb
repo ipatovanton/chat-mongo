@@ -5,6 +5,7 @@ class Chatroom
   include Mongoid::Paperclip
 
   field :name, type: String
+  field :direct_message, type: Boolean, default: false
 
   has_many :chatroom_users, dependent: :destroy
   has_many :messages, dependent: :destroy

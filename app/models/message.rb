@@ -7,7 +7,7 @@ class Message
   field :chatroom_id, type: Integer
   field :user_id, type: Integer
   field :content, type: String
-  field :direct_message, type: Boolean, default: false
+
 
   belongs_to :chatroom
   belongs_to :user
