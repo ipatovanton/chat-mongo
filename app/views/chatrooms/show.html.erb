@@ -2,10 +2,20 @@
   <div class="team-menu"><%= link_to 'TTV Chat', chatrooms_path, class: 'link-color'%></div>
 
   <div class="channel-menu">
-    <span class="channel-menu_name"><span class="channel-menu_prefix">#</span>
-    <%= @chatroom.name%></span>
-    <span><%= link_to "Leave Chat", chatroom_chatroom_users_path(@chatroom), method: :delete %>
-</span>
+    <% if controller.controller_name == "direct_messages" %>
+      <% @users.each do |user|%>
+        <span>#</span><span class="channel-menu_name"><%= user.email%></span>
+      <% end %>
+    <% else %>
+      <span class="channel-menu_name">
+      <span class="channel-menu_prefix">#</span>
+      <%= @chatroom.name%>
+    </span>
+    <% end %>
+
+    <span>
+      <%= link_to "Leave Chat", chatroom_chatroom_users_path(@chatroom), method: :delete %>
+    </span>
   </div>
 </div>
 <div class="main">
@@ -24,7 +34,7 @@
         <li class="channel">
           <% (User.all - [current_user]).each do |user| %>
             <ul>
-              <li><span><%= image_tag(user.avatar.url(:thumb))%></span>
+              <li><span class="avatar"><%= image_tag(user.avatar.url(:original))%></span>
               <%= link_to user.email, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id } %></li>
             </ul>
           <% end %>

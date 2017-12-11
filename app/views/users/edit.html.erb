@@ -45,7 +45,7 @@
           </div>
           <% if @user.avatar.present? %>
              <div>
-               <%= image_tag @user.avatar.url(:original) %>
+               <%= image_tag @user.avatar.url(:medium) %>
             </div>
           <% end %>
           <div class="form-group txt-center">
