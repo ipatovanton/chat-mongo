@@ -1,7 +1,5 @@
-
 <div class="header">
   <div class="team-menu"><%= link_to 'TTV Chat', chatrooms_path, class: 'link-color'%></div>
-
   <div class="channel-menu">
     <span class="channel-menu_name"><span class="channel-menu_prefix">#</span>Upload Avatar</span>
   </div>
@@ -15,21 +13,10 @@
             <li class="channel"><span><%= link_to "# #{chatroom.name}", chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %></span></li>
 
         <% end %>
-        <!-- li class="channel active">
-          <a class="channel_name"><span><span class="prefix">#</span>admin</span></a>
-        </li>
-        <li class="channel">
-          <a class="channel_name"><span class="unread">10</span><span><span class="prefix">#</span>general</span></a>
-        </li> -->
       </ul>
     </div>
     <div class="listings_direct-messages">
       <h2 class="listings_header">Direct Messages</h2>
-      <!-- <ul class="channel_list">
-        <li class="channel">
-          <a class="channel_name"><span class="unread">20</span><span><span class="prefix"> </span>dhh@basecamp.com</span></a>
-        </li>
-      </ul> -->
     </div>
   </div>
   <div class="message-history" id="messages">

@@ -24,6 +24,12 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       </div>")
     console.log(messages)
     messages.scrollTop messages.prop('scrollHeight')
-
+    setTimeout ->
+      $('.message_content').linkify()
+    , 500
   speak: (chatroom_id,message) ->
     @perform 'speak', {chatroom_id: chatroom_id, content: message}
+    setTimeout ->
+      $('.message_content').linkify()
+    , 500
+

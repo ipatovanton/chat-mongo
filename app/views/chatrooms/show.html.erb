@@ -1,6 +1,5 @@
  <div class="header">
   <div class="team-menu"><%= link_to 'TTV Chat', chatrooms_path, class: 'link-color'%></div>
-
   <div class="channel-menu">
     <% if controller.controller_name == "direct_messages" %>
       <% @users.each do |user|%>

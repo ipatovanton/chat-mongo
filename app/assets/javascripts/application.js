@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require linkify.min
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery-fileupload/vendor/jquery.ui.widget
 //= require jquery-fileupload/jquery.iframe-transport
 //= require jquery-fileupload/jquery.fileupload
+//= require app
 //= require_tree .
